@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
-    @FocusState private var amountIsFocused: Bool
+    @FocusState private var amountIsFocused: Bool //to hide keyboard by tapping Done button
     
     var totalPerPerson: Double { //calculate the total amount per person
         let peopleCount = Double(numberOfPeople + 2) //convert value to a double. the range 2 to 100, but it counts from 0, which is why we need to add the 2.
