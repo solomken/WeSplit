@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
+    
     @FocusState private var amountIsFocused: Bool //to hide keyboard by tapping Done button
     
     var totalPerPerson: Double { //calculate the total amount per person
@@ -31,6 +32,15 @@ struct ContentView: View {
         let originalAmountPlusTips = checkAmount + tipValue
         
         return originalAmountPlusTips
+    }
+    
+    var useRedText: Bool {
+        var redText = false
+        let tipSelection = Double(tipPercentage)
+        if tipSelection == 0 {
+            redText = true
+        }
+        return redText
     }
     
     var body: some View {
@@ -62,6 +72,7 @@ struct ContentView: View {
                 
                 Section {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                        .foregroundColor(useRedText ? .red : .black)
                 } header: {
                     Text("Total to pay per person")
                 }
