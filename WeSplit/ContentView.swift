@@ -34,15 +34,6 @@ struct ContentView: View {
         return originalAmountPlusTips
     }
     
-    var useRedText: Bool {
-        var redText = false
-        let tipSelection = Double(tipPercentage)
-        if tipSelection == 0 {
-            redText = true
-        }
-        return redText
-    }
-    
     var body: some View {
         NavigationView {
             Form {
@@ -72,7 +63,7 @@ struct ContentView: View {
                 
                 Section {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                        .foregroundColor(useRedText ? .red : .black)
+                        .foregroundColor(tipPercentage == 0 ? .red : .black)
                 } header: {
                     Text("Total to pay per person")
                 }
